@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>মাস্টার অ্যাডমিন প্যানেল</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-zinc-950 text-white font-sans flex min-h-screen">
+
+    <!-- অ্যাডমিন সাইডবার -->
+    <aside class="w-64 bg-zinc-900 border-r border-zinc-800 p-6 flex flex-col justify-between hidden md:flex">
+        <div class="space-y-6">
+            <div class="text-xl font-black text-red-500 flex items-center gap-2 uppercase tracking-wider">
+                <i class="fa-solid fa-unlock-keyhole"></i> Admin Panel
+            </div>
+            <nav class="space-y-1">
+                <a href="#" class="flex items-center gap-3 px-4 py-3 bg-zinc-800 border-l-4 border-red-500 font-semibold text-sm transition text-white"><i class="fa-solid fa-gauge"></i> ড্যাশবোর্ড</a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-xl text-sm transition"><i class="fa-solid fa-users-cog"></i> ইউজার কন্ট্রোল</a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-xl text-sm transition"><i class="fa-solid fa-cubes"></i> প্যাকেজ সেটিংস</a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-xl text-sm transition"><i class="fa-solid fa-rectangle-ad"></i> বিজ্ঞাপন সেটআপ</a>
+            </nav>
+        </div>
+    </aside>
+
+    <!-- মেইন অ্যাডমিন কন্টেন্ট -->
+    <main class="flex-1 p-6 md:p-10">
+        <header class="mb-8 flex justify-between items-center">
+            <div>
+                <h1 class="text-2xl font-black">সেন্ট্রাল অ্যাডমিন কন্ট্রোল</h1>
+                <p class="text-sm text-zinc-400">এখান থেকে পুরো প্ল্যাটফর্মের লাইভ ডাটা ম্যানেজ করুন।</p>
+            </div>
+            <span class="bg-red-950 text-red-400 border border-red-800 px-4 py-1 rounded-full text-xs font-bold uppercase">Super Admin</span>
+        </header>
+
+        <!-- বিজ্ঞাপন অটো সেটিং (Monetag / Adsterra Ads Setup) -->
+        <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl mb-8">
+            <h3 class="text-base font-bold mb-4 flex items-center gap-2"><i class="fa-solid fa-rectangle-ad text-yellow-500"></i> অটো বিজ্ঞাপন সেটিং (Monetag & Adsterra Script Placement)</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="text-xs text-zinc-400 block mb-1">Adsterra ব্যানার কোড (HTML/JS)</label>
+                    <textarea rows="4" placeholder="<!-- Paste Adsterra Script Here -->" class="w-full bg-zinc-800 border border-zinc-700 p-3 rounded-xl text-xs font-mono text-zinc-300 focus:outline-none focus:border-red-500"></textarea>
+                </div>
+                <div>
+                    <label class="text-xs text-zinc-400 block mb-1">Monetag পপ-আন্ডার বা ডিরেক্ট লিংক কোড</label>
+                    <textarea rows="4" placeholder="<!-- Paste Monetag Script Here -->" class="w-full bg-zinc-800 border border-zinc-700 p-3 rounded-xl text-xs font-mono text-zinc-300 focus:outline-none focus:border-red-500"></textarea>
+                </div>
+            </div>
+            <button class="mt-4 bg-green-600 hover:bg-green-700 px-6 py-2 rounded-xl text-sm font-bold transition">বিজ্ঞাপন কোড সেভ করুন</button>
+        </div>
+
+        <!-- ইউজার পেজ ফুল কন্ট্রোল ও লিস্ট -->
+        <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl">
+            <h3 class="text-base font-bold mb-4 flex items-center gap-2"><i class="fa-solid fa-users-cog text-blue-500"></i> ইউজার পেজ ফুল কন্ট্রোল</h3>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm text-zinc-400">
+                    <thead class="bg-zinc-800 text-zinc-200 text-xs uppercase">
+                        <tr>
+                            <th class="p-3">ইউজার</th>
+                            <th class="p-3">রোল (Role)</th>
+                            <th class="p-3">স্ট্যাটাস</th>
+                            <th class="p-3 text-right">অ্যাকশন (Action)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-zinc-800">
+                        <tr>
+                            <td class="p-3 flex items-center gap-3">
+                                <div class="w-8 h-8 bg-zinc-700 rounded-full flex items-center justify-center text-xs">RH</div>
+                                <div>
+                                    <p class="font-medium text-white text-sm">রাকিব হাসান</p>
+                                    <p class="text-xs text-zinc-500">rakib@example.com</p>
+                                </div>
+                            </td>
+                            <td class="p-3 text-xs">General User</td>
+                            <td class="p-3"><span class="bg-green-950 text-green-400 border border-green-900 text-[10px] px-2 py-0.5 rounded-full font-bold">Active</span></td>
+                            <td class="p-3 text-right space-x-1">
+                                <button class="bg-blue-600 hover:bg-blue-700 text-white text-xs px-2.5 py-1 rounded transition"><i class="fa-solid fa-pen-to-square"></i> এডিট</button>
+                                <button class="bg-red-600 hover:bg-red-700 text-white text-xs px-2.5 py-1 rounded transition"><i class="fa-solid fa-ban"></i> ব্লক</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 flex items-center gap-3">
+                                <div class="w-8 h-8 bg-zinc-700 rounded-full flex items-center justify-center text-xs">SR</div>
+                                <div>
+                                    <p class="font-medium text-white text-sm">সোহেল রানা</p>
+                                    <p class="text-xs text-zinc-500">sohel@reseller.com</p>
+                                </div>
+                            </td>
+                            <td class="p-3 text-xs text-orange-400 font-bold">Reseller</td>
+                            <td class="p-3"><span class="bg-green-950 text-green-400 border border-green-900 text-[10px] px-2 py-0.5 rounded-full font-bold">Active</span></td>
+                            <td class="p-3 text-right space-x-1">
+                                <button class="bg-blue-600 hover:bg-blue-700 text-white text-xs px-2.5 py-1 rounded transition"><i class="fa-solid fa-pen-to-square"></i> এডিট</button>
+                                <button class="bg-red-600 hover:bg-red-700 text-white text-xs px-2.5 py-1 rounded transition"><i class="fa-solid fa-ban"></i> ব্লক</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
