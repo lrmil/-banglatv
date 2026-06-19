@@ -3,94 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ইউজার ড্যাশবোর্ড</title>
+    <title>ইউজার লগইন ও ড্যাশবোর্ড</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-zinc-950 text-white font-sans flex min-h-screen">
+<body class="bg-zinc-950 text-white font-sans flex min-h-screen justify-center items-center p-4">
 
-    <!-- সাইডবার মেনু -->
-    <aside class="w-64 bg-zinc-900 border-r border-zinc-800 p-6 flex flex-col justify-between hidden md:flex">
-        <div class="space-y-6">
-            <a href="index.html" class="text-xl font-bold text-red-500 flex items-center gap-2">
-                <i class="fa-solid fa-tv"></i> বাংলাটিভি
-            </a>
-            <nav class="space-y-1">
-                <a href="#" class="flex items-center gap-3 px-4 py-3 bg-red-600 rounded-xl font-medium text-sm transition"><i class="fa-solid fa-chart-pie"></i> ড্যাশবোর্ড</a>
-                <a href="index.html" class="flex items-center gap-3 px-4 py-3 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-xl font-medium text-sm transition"><i class="fa-solid fa-play"></i> লাইভ স্ট্রিম</a>
-                <a href="#" class="flex items-center gap-3 px-4 py-3 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-xl font-medium text-sm transition"><i class="fa-solid fa-credit-card"></i> বিলিং হিস্ট্রি</a>
-            </nav>
+    <!-- ১. লগইন/সাইনআপ ফরম কন্টেইনার (যদি লগইন না থাকে) -->
+    <div id="authBox" class="w-full max-w-md bg-zinc-900 border border-zinc-800 p-6 rounded-2xl shadow-xl">
+        <div class="flex justify-around border-b border-zinc-800 pb-3 mb-4 text-sm font-bold">
+            <button onclick="toggleTab('login')" id="loginTabBtn" class="text-red-500 border-b-2 border-red-500 pb-2">লগইন</button>
+            <button onclick="toggleTab('register')" id="regTabBtn" class="text-zinc-400 pb-2">রেজিস্ট্রেশন (সাইনআপ)</button>
         </div>
-        <div class="border-t border-zinc-800 pt-4">
-            <div class="flex items-center gap-3 mb-4">
-                <div class="w-10 h-10 bg-zinc-800 rounded-full flex items-center justify-center"><i class="fa-solid fa-user text-zinc-400"></i></div>
-                <div>
-                    <h4 class="text-sm font-semibold">রাকিব হাসান</h4>
-                    <p class="text-xs text-zinc-500">গ্রাহক অ্যাকাউন্ট</p>
-                </div>
-            </div>
-            <a href="index.html" class="w-full bg-zinc-800 hover:bg-zinc-700 py-2 rounded-lg text-xs font-semibold block text-center transition text-red-400">লগ আউট</a>
-        </div>
-    </aside>
 
-    <!-- মেইন ড্যাশবোর্ড কন্টেন্ট -->
-    <main class="flex-1 p-6 md:p-10">
-        <!-- হেডার -->
-        <header class="flex justify-between items-center mb-8">
+        <!-- লগইন ফর্ম -->
+        <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4">
             <div>
-                <h1 class="text-2xl font-bold">স্বাগতম, রাকিব!</h1>
-                <p class="text-sm text-zinc-400">আপনার সাবস্ক্রিপশন ও প্রোফাইল এখান থেকে নিয়ন্ত্রণ করুন।</p>
+                <label class="text-xs text-zinc-400 block mb-1">ইমেইল</label>
+                <input type="email" id="loginEmail" required class="w-full bg-zinc-800 border border-zinc-700 px-4 py-2 rounded-xl text-sm focus:outline-none focus:border-red-500">
             </div>
-        </header>
+            <div>
+                <label class="text-xs text-zinc-400 block mb-1">পাসওয়ার্ড</label>
+                <input type="password" id="loginPass" required class="w-full bg-zinc-800 border border-zinc-700 px-4 py-2 rounded-xl text-sm focus:outline-none focus:border-red-500">
+            </div>
+            <button class="w-full bg-red-600 hover:bg-red-700 py-2.5 rounded-xl font-bold text-sm transition">প্রবেশ করুন</button>
+        </form>
 
-        <!-- ওভারভিউ কার্ডসমূহ -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl">
-                <p class="text-sm text-zinc-400 mb-1">অ্যাক্টিভ প্যাকেজ</p>
-                <h3 class="text-xl font-bold text-green-500">মেগা স্পোর্টস প্যাক</h3>
+        <!-- সাইনআপ ফর্ম -->
+        <form id="registerForm" onsubmit="handleRegister(event)" class="space-y-4 hidden">
+            <div>
+                <label class="text-xs text-zinc-400 block mb-1">আপনার নাম</label>
+                <input type="text" id="regName" required class="w-full bg-zinc-800 border border-zinc-700 px-4 py-2 rounded-xl text-sm focus:outline-none focus:border-red-500">
             </div>
-            <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl">
-                <p class="text-sm text-zinc-400 mb-1">মেয়াদ শেষ হবে</p>
-                <h3 class="text-xl font-bold">১৪ জুলাই, ২০২৬</h3>
+            <div>
+                <label class="text-xs text-zinc-400 block mb-1">ইমেইল এড্রেস</label>
+                <input type="email" id="regEmail" required class="w-full bg-zinc-800 border border-zinc-700 px-4 py-2 rounded-xl text-sm focus:outline-none focus:border-red-500">
             </div>
-            <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl">
-                <p class="text-sm text-zinc-400 mb-1">কানেক্টেড ডিভাইস</p>
-                <h3 class="text-xl font-bold text-orange-500">১ টি (সর্বোচ্চ ২)</h3>
+            <div>
+                <label class="text-xs text-zinc-400 block mb-1">পাসওয়ার্ড</label>
+                <input type="password" id="regPass" required class="w-full bg-zinc-800 border border-zinc-700 px-4 py-2 rounded-xl text-sm focus:outline-none focus:border-red-500">
+            </div>
+            <div>
+                <label class="text-xs text-zinc-400 block mb-1">অ্যাকাউন্ট টাইপ</label>
+                <select id="regRole" class="w-full bg-zinc-800 border border-zinc-700 px-4 py-2 rounded-xl text-sm focus:outline-none focus:border-red-500">
+                    <option value="user">সাধারণ ইউজার (User)</option>
+                    <option value="reseller">রিসেলার (Reseller)</option>
+                </select>
+            </div>
+            <button class="w-full bg-green-600 hover:bg-green-700 py-2.5 rounded-xl font-bold text-sm transition">অ্যাকাউন্ট তৈরি করুন</button>
+        </form>
+    </div>
+
+    <!-- ২. প্রোফাইল ড্যাশবোর্ড (লগইন করা থাকলে এটি শো করবে) -->
+    <div id="dashboardBox" class="w-full max-w-2xl bg-zinc-900 border border-zinc-800 p-6 rounded-2xl shadow-xl hidden">
+        <div class="flex justify-between items-center border-b border-zinc-800 pb-4 mb-4">
+            <div>
+                <h2 class="text-xl font-bold">আমার অ্যাকাউন্ট ড্যাশবোর্ড</h2>
+                <p id="userWelcome" class="text-sm text-zinc-400"></p>
+            </div>
+            <button onclick="logout()" class="bg-zinc-800 hover:bg-zinc-700 text-xs px-3 py-1.5 rounded-lg text-red-400 font-bold">লগআউট</button>
+        </div>
+        <div class="grid grid-cols-2 gap-4 mb-6">
+            <div class="bg-zinc-950 p-4 rounded-xl border border-zinc-800">
+                <p class="text-xs text-zinc-500">অ্যাক্টিভ প্যাকেজ</p>
+                <p class="font-bold text-green-500">ফ্রি ট্রায়াল প্যাক</p>
+            </div>
+            <div class="bg-zinc-950 p-4 rounded-xl border border-zinc-800">
+                <p class="text-xs text-zinc-500">লিংকড রিসেলার আইডি</p>
+                <p class="font-bold text-zinc-300">সরাসরি অ্যাডমিন</p>
             </div>
         </div>
+        <a href="index.html" class="block w-full text-center bg-red-600 py-2.5 rounded-xl text-sm font-bold">লাইভ টিভি দেখতে ক্লিক করুন</a>
+    </div>
 
-        <!-- প্রোফাইল সেটিংস (ইউজার ফুল কন্ট্রোল) -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div class="lg:col-span-2 bg-zinc-900 border border-zinc-800 p-6 rounded-2xl">
-                <h3 class="text-lg font-bold mb-4 border-b border-zinc-800 pb-2"><i class="fa-solid fa-user-gear mr-2 text-red-500"></i> প্রোফাইল এডিট করুন</h3>
-                <form class="space-y-4">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label class="text-xs text-zinc-400 block mb-1">আপনার নাম</label>
-                            <input type="text" value="রাকিব হাসান" class="w-full bg-zinc-800 border border-zinc-700 px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:border-red-500">
-                        </div>
-                        <div>
-                            <label class="text-xs text-zinc-400 block mb-1">ইমেইল এড্রেস</label>
-                            <input type="email" value="rakib@example.com" class="w-full bg-zinc-800 border border-zinc-700 px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:border-red-500" disabled>
-                        </div>
-                    </div>
-                    <div>
-                        <label class="text-xs text-zinc-400 block mb-1">নতুন পাসওয়ার্ড (পরিবর্তন করতে চাইলে)</label>
-                        <input type="password" placeholder="••••••••" class="w-full bg-zinc-800 border border-zinc-700 px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:border-red-500">
-                    </div>
-                    <button type="submit" class="bg-red-600 hover:bg-red-700 px-6 py-2.5 rounded-xl font-semibold text-sm transition">সেভ চেঞ্জেস</button>
-                </form>
-            </div>
+    <script>
+        function toggleTab(type) {
+            if(type === 'login') {
+                document.getElementById('loginForm').classList.remove('hidden');
+                document.getElementById('registerForm').classList.add('hidden');
+                document.getElementById('loginTabBtn').className = "text-red-500 border-b-2 border-red-500 pb-2";
+                document.getElementById('regTabBtn').className = "text-zinc-400 pb-2";
+            } else {
+                document.getElementById('loginForm').classList.add('hidden');
+                document.getElementById('registerForm').classList.remove('hidden');
+                document.getElementById('loginTabBtn').className = "text-zinc-400 pb-2";
+                document.getElementById('regTabBtn').className = "text-red-500 border-b-2 border-red-500 pb-2";
+            }
+        }
 
-            <!-- রিসেলার নোটিশ/অফার বক্স -->
-            <div class="bg-gradient-to-br from-zinc-900 to-zinc-950 border border-zinc-800 p-6 rounded-2xl flex flex-col justify-between">
-                <div>
-                    <h3 class="text-lg font-bold mb-2 text-orange-500"><i class="fa-solid fa-briefcase mr-2"></i> টাকা আয় করতে চান?</h3>
-                    <p class="text-sm text-zinc-400 leading-relaxed">আমাদের রিসেলার প্রোগ্রামে যোগ দিন। নিজে নিজে ইউজার অ্যাকাউন্ট তৈরি করে কাস্টমারের কাছে প্যাকেজ বিক্রি করুন এবং প্রতি বিক্রিতে আকর্ষণীয় কমিশন পান!</p>
-                </div>
-                <a href="reseller.html" class="w-full bg-orange-600 hover:bg-orange-700 py-3 rounded-xl text-center font-bold text-sm block mt-4 transition">রিসেলার প্যানেল দেখুন</a>
-            </div>
-        </div>
-    </main>
+        // সাইনআপ প্রসেস
+        function handleRegister(e) {
+            e.preventDefault();
+            let users = JSON.parse(localStorage.getItem('allUsers')) || [];
+            
+            const newUser = {
+                name: document.getElementById('regName').value,
+                email: document.getElementById('regEmail').value,
+                password: document.getElementById('regPass').value,
+                role: document.getElementById('regRole').value,
+                createdBy: 'self'
+            };
+
+            if(users.some(u => u.email === newUser.email)) {
+                alert('এই ইমেইলটি অলরেডি রেজিস্টার্ড!');
+                return;
+            }
+
+            users.push(newUser);
+            localStorage.setItem('allUsers', JSON.stringify(users));
+            alert('রেজিস্ট্রেশন সফল! অনুগ্রহ করে লগইন করুন।');
+            toggleTab('login');
+        }
+
+        // লগইন প্রসেস
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const pass = document.getElementById('loginPass').value;
+            
+            // ডিফল্ট অ্যাডমিন একাউন্ট চেক
+            if(email === 'admin@tv.com' && pass === 'admin123') {
+                localStorage.setItem('currentUser', JSON.stringify({name: 'Admin', email: email, role: 'admin'}));
+                window.location.href = 'admin.html';
+                return;
+            }
+
+            let users = JSON.parse(localStorage.getItem('allUsers')) || [];
+            let matchedUser = users.find(u => u.email === email && u.password === pass);
+
+            if(matchedUser) {
+                localStorage.setItem('currentUser', JSON.stringify(matchedUser));
+                if(matchedUser.role === 'reseller') {
+                    window.location.href = 'reseller.html';
+                } else {
+                    checkLoginState();
+                }
+            } else {
+                alert('ভুল ইমেইল অথবা পাসওয়ার্ড!');
+            }
+        }
+
+        function checkLoginState() {
+            let user = JSON.parse(localStorage.getItem('currentUser'));
+            if(user) {
+                document.getElementById('authBox').classList.add('hidden');
+                document.getElementById('dashboardBox').classList.remove('hidden');
+                document.getElementById('userWelcome').innerText = `${user.name} (${user.role.toUpperCase()})`;
+                
+                if(user.role === 'reseller') window.location.href = 'reseller.html';
+                if(user.role === 'admin') window.location.href = 'admin.html';
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('currentUser');
+            location.reload();
+        }
+
+        checkLoginState();
+    </script>
 </body>
 </html>
