@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>রিসেলার ড্যাশবোর্ড</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-zinc-950 text-white font-sans flex min-h-screen">
+
+    <!-- সাইডবার মেনু -->
+    <aside class="w-64 bg-zinc-900 border-r border-zinc-800 p-6 flex flex-col justify-between hidden md:flex">
+        <div class="space-y-6">
+            <a href="index.html" class="text-xl font-bold text-orange-500 flex items-center gap-2">
+                <i class="fa-solid fa-briefcase"></i> আর-প্যানেল
+            </a>
+            <nav class="space-y-1">
+                <a href="#" class="flex items-center gap-3 px-4 py-3 bg-orange-600 rounded-xl font-medium text-sm transition"><i class="fa-solid fa-house"></i> ওভারভিউ</a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-xl font-medium text-sm transition"><i class="fa-solid fa-users"></i> আমার ইউজারস</a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-xl font-medium text-sm transition"><i class="fa-solid fa-wallet"></i> উইথড্র রিকোয়েস্ট</a>
+            </nav>
+        </div>
+        <div class="border-t border-zinc-800 pt-4 text-center">
+            <p class="text-xs text-zinc-500">লগইন অ্যাকাউন্ট: <span class="text-white">সোহেল রানা</span></p>
+        </div>
+    </aside>
+
+    <!-- মেইন কন্টেন্ট -->
+    <main class="flex-1 p-6 md:p-10">
+        <header class="mb-8">
+            <h1 class="text-2xl font-bold">রিসেলার ড্যাশবোর্ড</h1>
+            <p class="text-sm text-zinc-400">এখানে নতুন অ্যাকাউন্ট ও কমিশন ট্র্যাক করুন।</p>
+        </header>
+
+        <!-- মেট্রিিক্স কার্ডস -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl relative overflow-hidden">
+                <p class="text-sm text-zinc-400 mb-1">মোট কমিশন আয়</p>
+                <h3 class="text-3xl font-black text-orange-500">৳ ৪,৫০০</h3>
+                <button class="mt-4 text-xs bg-orange-600 hover:bg-orange-700 px-3 py-1.5 rounded-lg font-bold transition">টাকা উইথড্র করুন</button>
+            </div>
+            <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl">
+                <p class="text-sm text-zinc-400 mb-1">তৈরি করা মোট অ্যাকাউন্ট</p>
+                <h3 class="text-3xl font-black">১২৪ জন</h3>
+            </div>
+            <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl">
+                <p class="text-sm text-zinc-400 mb-1">আপনার নিজস্ব কমিশন রেট</p>
+                <h3 class="text-3xl font-black text-green-500">১৫ %</h3>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- ইউজার অ্যাকাউন্ট তৈরি করার ফর্ম -->
+            <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl">
+                <h3 class="text-base font-bold mb-4 text-zinc-200"><i class="fa-solid fa-user-plus mr-2 text-orange-500"></i> নতুন কাস্টমার আইডি তৈরি করুন</h3>
+                <form class="space-y-4">
+                    <div>
+                        <label class="text-xs text-zinc-400 block mb-1">গ্রাহকের নাম</label>
+                        <input type="text" placeholder="John Doe" class="w-full bg-zinc-800 border border-zinc-700 px-4 py-2 rounded-xl text-sm focus:outline-none focus:border-orange-500">
+                    </div>
+                    <div>
+                        <label class="text-xs text-zinc-400 block mb-1">ইমেইল</label>
+                        <input type="email" placeholder="user@gmail.com" class="w-full bg-zinc-800 border border-zinc-700 px-4 py-2 rounded-xl text-sm focus:outline-none focus:border-orange-500">
+                    </div>
+                    <div>
+                        <label class="text-xs text-zinc-400 block mb-1">পাসওয়ার্ড</label>
+                        <input type="password" placeholder="••••••••" class="w-full bg-zinc-800 border border-zinc-700 px-4 py-2 rounded-xl text-sm focus:outline-none focus:border-orange-500">
+                    </div>
+                    <div>
+                        <label class="text-xs text-zinc-400 block mb-1">প্যাকেজ সেটিং (অ্যাসাইন প্যাক)</label>
+                        <select class="w-full bg-zinc-800 border border-zinc-700 px-4 py-2 rounded-xl text-sm focus:outline-none focus:border-orange-500">
+                            <option>মেগা স্পোর্টস প্যাক (৳ ৫০)</option>
+                            <option>বেসিক প্যাক (৳ ২০)</option>
+                        </select>
+                    </div>
+                    <button class="w-full bg-orange-600 hover:bg-orange-700 py-2.5 rounded-xl font-bold text-sm transition">অ্যাকাউন্ট তৈরি করুন</button>
+                </form>
+            </div>
+
+            <!-- তৈরি করা ইউজারদের তালিকা -->
+            <div class="lg:col-span-2 bg-zinc-900 border border-zinc-800 p-6 rounded-2xl">
+                <h3 class="text-base font-bold mb-4 text-zinc-200"><i class="fa-solid fa-list mr-2 text-orange-500"></i> আমার আন্ডারে থাকা ইউজার লিস্ট</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm text-zinc-400">
+                        <thead class="bg-zinc-800 text-zinc-200 text-xs uppercase">
+                            <tr>
+                                <th class="p-3 rounded-l-lg">নাম</th>
+                                <th class="p-3">প্যাকেজ</th>
+                                <th class="p-3">তারিখ</th>
+                                <th class="p-3 rounded-r-lg">অর্জিত কমিশন</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-zinc-800">
+                            <tr>
+                                <td class="p-3 font-medium text-white">কামাল হোসেন</td>
+                                <td class="p-3"><span class="bg-zinc-800 text-xs px-2 py-0.5 rounded text-orange-400">মেগা প্যাক</span></td>
+                                <td class="p-3 text-xs">১৯ জুন, ২০২৬</td>
+                                <td class="p-3 text-green-500 font-bold">+ ৳ ৭.৫০</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-medium text-white">সুমন আলী</td>
+                                <td class="p-3"><span class="bg-zinc-800 text-xs px-2 py-0.5 rounded text-orange-400">মেগা প্যাক</span></td>
+                                <td class="p-3 text-xs">১৮ জুন, ২০২৬</td>
+                                <td class="p-3 text-green-500 font-bold">+ ৳ ৳ ৭.৫০</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
