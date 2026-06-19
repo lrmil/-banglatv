@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>বাংলা লাইভ টিভি ও স্পোর্টস</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-zinc-950 text-white font-sans">
+
+    <!-- নেভিগেশন বার -->
+    <nav class="bg-zinc-900 border-b border-zinc-800 p-4 sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-red-500 flex items-center gap-2">
+                <i class="fa-solid fa-tv"></i> বাংলাটিভি <span class="text-xs bg-red-600 text-white px-2 py-0.5 rounded-full">লাইভ</span>
+            </a>
+            <div class="flex gap-4 items-center">
+                <a href="user.html" class="text-sm bg-zinc-800 hover:bg-zinc-700 px-4 py-2 rounded-lg transition"><i class="fa-regular fa-user mr-1"></i> ড্যাশবোর্ড</a>
+                <a href="#packages" class="text-sm bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 px-4 py-2 rounded-lg font-semibold shadow-lg">প্রিমিয়াম কিনুন</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ব্যানার বিজ্ঞাপন (Adsterra/Monetag) -->
+    <div class="container mx-auto my-4 px-4 text-center">
+        <div class="bg-zinc-900 border border-zinc-800 p-4 rounded-xl text-xs text-zinc-500 max-w-4xl mx-auto">
+            <!-- এখানে আপনার Adsterra/Monetag ব্যানার স্ক্রিপ্ট কোড বসবে -->
+            <p class="mb-1 text-zinc-400">[বিজ্ঞাপন]</p>
+            <div class="w-full h-24 bg-zinc-800 rounded flex items-center justify-center text-zinc-600 text-base">728x90 Leaderboard Ad Space</div>
+        </div>
+    </div>
+
+    <!-- মেইন কন্টেন্ট (প্লেয়ার এবং চ্যানেল) -->
+    <main class="container mx-auto px-4 py-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- ভিডিও প্লেয়ার (বাম পাশে) -->
+        <div class="lg:col-span-2">
+            <div class="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl">
+                <!-- ভিডিও এরিয়া (Iframe বা HLS প্লেয়ারের জন্য) -->
+                <div class="aspect-video bg-black relative flex items-center justify-center group cursor-pointer">
+                    <div class="absolute inset-0 bg-cover bg-center opacity-60" style="background-image: url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800');"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+                    <button class="w-20 h-20 bg-red-600 hover:bg-red-700 rounded-full flex items-center justify-center text-white text-3xl shadow-2xl transition transform hover:scale-110 z-10">
+                        <i class="fa-solid fa-play ml-1"></i>
+                    </button>
+                    <span class="absolute top-4 left-4 bg-red-600 text-xs px-3 py-1 rounded-full font-bold uppercase tracking-wider flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>জিটিভি লাইভ (GTV Live)</span>
+                </div>
+                <div class="p-4 flex justify-between items-center">
+                    <div>
+                        <h1 class="text-xl font-bold">বাংলাদেশ বনাম ভারত - লাইভ ক্রিকেট ম্যাচ</h1>
+                        <p class="text-zinc-400 text-sm mt-1"><i class="fa-regular fa-eye mr-1"></i> ২৫,৪২০ জন দেখছেন</p>
+                    </div>
+                    <button class="bg-zinc-800 hover:bg-zinc-700 p-3 rounded-xl transition"><i class="fa-solid fa-share-nodes"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- চ্যানেল লিস্ট (ডান পাশে) -->
+        <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 h-[500px] flex flex-col">
+            <h2 class="text-lg font-bold mb-4 flex items-center gap-2 border-b border-zinc-800 pb-2"><i class="fa-solid fa-list text-red-500"></i> লাইভ চ্যানেলসমূহ</h2>
+            <div class="overflow-y-auto space-y-2 flex-1 pr-1 custom-scrollbar">
+                <!-- একক চ্যানেল আইটেম -->
+                <div class="flex items-center gap-3 p-3 bg-zinc-800/50 hover:bg-zinc-800 rounded-xl cursor-pointer border border-transparent hover:border-zinc-700 transition">
+                    <div class="w-12 h-12 bg-zinc-700 rounded-lg flex items-center justify-center font-bold text-red-500">GTV</div>
+                    <div>
+                        <h4 class="font-semibold text-sm">জিটিভি (GTV Sports)</h4>
+                        <span class="text-xs text-red-500 flex items-center gap-1 mt-0.5"><span class="w-1.5 h-1.5 rounded-full bg-red-500"></span> লাইভ</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3 p-3 bg-zinc-800/50 hover:bg-zinc-800 rounded-xl cursor-pointer border border-transparent hover:border-zinc-700 transition">
+                    <div class="w-12 h-12 bg-zinc-700 rounded-lg flex items-center justify-center font-bold text-blue-500">T-Sports</div>
+                    <div>
+                        <h4 class="font-semibold text-sm">টি-স্পোর্টস লাইভ</h4>
+                        <span class="text-xs text-red-500 flex items-center gap-1 mt-0.5"><span class="w-1.5 h-1.5 rounded-full bg-red-500"></span> লাইভ</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3 p-3 bg-zinc-800/50 hover:bg-zinc-800 rounded-xl cursor-pointer border border-transparent hover:border-zinc-700 transition">
+                    <div class="w-12 h-12 bg-zinc-700 rounded-lg flex items-center justify-center font-bold text-yellow-500">Sony</div>
+                    <div>
+                        <h4 class="font-semibold text-sm">সনি টেন ১ (Sony Ten 1)</h4>
+                        <span class="text-xs text-zinc-500 flex items-center gap-1 mt-0.5">অফলাইন</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- প্যাকেজ সেকশন এবং পেমেন্ট গেটওয়ে -->
+    <section id="packages" class="container mx-auto px-4 py-12 border-t border-zinc-900">
+        <div class="text-center mb-10">
+            <h2 class="text-3xl font-bold bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">প্রিমিয়াম সাবস্ক্রিপশন প্যাকেজ</h2>
+            <p class="text-zinc-400 mt-2">বিকাশ, রকেট বা নগদের মাধ্যমে পেমেন্ট করে যেকোনো সময় উপভোগ করুন বিজ্ঞাপনহীন লাইভ স্ট্রিমিং</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <!-- কার্ড ১ -->
+            <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl flex flex-col justify-between hover:border-zinc-700 transition">
+                <div>
+                    <h3 class="text-xl font-bold">বেসিক প্যাক</h3>
+                    <div class="my-4"><span class="text-3xl font-extrabold text-orange-500">৳ ২০</span> / ৭ দিন</div>
+                    <ul class="text-sm text-zinc-400 space-y-2 mb-6">
+                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> সকল লোকাল চ্যানেল</li>
+                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> এসডি (SD) কোয়ালিটি</li>
+                        <li><i class="fa-solid fa-xmark text-red-500 mr-2"></i> কোনো স্মার্ট টিভি সাপোর্ট নেই</li>
+                    </ul>
+                </div>
+                <button onclick="openPaymentModal('বেসিক প্যাক', 20)" class="w-full bg-zinc-800 hover:bg-zinc-700 py-3 rounded-xl font-semibold transition">কিনুন</button>
+            </div>
+            <!-- কার্ড ২ (পপুলার) -->
+            <div class="bg-zinc-900 border-2 border-red-500 p-6 rounded-2xl flex flex-col justify-between relative shadow-xl shadow-red-950/20">
+                <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-red-600 text-xs px-3 py-1 rounded-full font-bold">সেরা অফার</span>
+                <div>
+                    <h3 class="text-xl font-bold">মেগা স্পোর্টস প্যাক</h3>
+                    <div class="my-4"><span class="text-3xl font-extrabold text-red-500">৳ ৫০</span> / ৩০ দিন</div>
+                    <ul class="text-sm text-zinc-300 space-y-2 mb-6">
+                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> সকল লাইভ খেলাধুলা (HD)</li>
+                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> কোনো অ্যাড থাকবে না (No Ads)</li>
+                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> ২ টি ডিভাইসে লগইন</li>
+                    </ul>
+                </div>
+                <button onclick="openPaymentModal('মেগা স্পোর্টস প্যাক', 50)" class="w-full bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 py-3 rounded-xl font-semibold transition shadow-lg shadow-red-600/20">কিনুন</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- পেমেন্ট গেটওয়ে পপআপ মডাল -->
+    <div id="paymentModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+        <div class="bg-zinc-950 border border-zinc-800 w-full max-w-md p-6 rounded-2xl relative">
+            <button onclick="closePaymentModal()" class="absolute top-4 right-4 text-zinc-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+            <h3 class="text-lg font-bold mb-1">পেমেন্ট গেটওয়ে</h3>
+            <p class="text-sm text-zinc-400 mb-4" id="modalPackageInfo">প্যাকেজ: মেগা স্পোর্টস প্যাক (৳ ৫০)</p>
+            
+            <label class="text-sm font-semibold block mb-2">১. পেমেন্ট মেথড সিলেক্ট করুন</label>
+            <div class="grid grid-cols-3 gap-2 mb-4">
+                <div class="border border-zinc-800 bg-zinc-900 rounded-xl p-3 flex flex-col items-center justify-center cursor-pointer hover:border-pink-500 transition active-gateway">
+                    <span class="text-pink-600 font-extrabold text-sm">bKash</span>
+                </div>
+                <div class="border border-zinc-800 bg-zinc-900 rounded-xl p-3 flex flex-col items-center justify-center cursor-pointer hover:border-orange-500 transition">
+                    <span class="text-orange-500 font-extrabold text-sm">Nagad</span>
+                </div>
+                <div class="border border-zinc-800 bg-zinc-900 rounded-xl p-3 flex flex-col items-center justify-center cursor-pointer hover:border-purple-500 transition">
+                    <span class="text-purple-500 font-extrabold text-sm">Rocket</span>
+                </div>
+            </div>
+
+            <div class="bg-zinc-900 border border-zinc-800 p-3 rounded-xl text-xs text-zinc-400 mb-4">
+                <p class="font-semibold text-zinc-300 mb-1">নির্দেশনা:</p>
+                <p>উপরের নাম্বারে "Send Money" করার পর ট্রানজেকশন আইডি (TrxID) নিচের বক্সে দিন।</p>
+                <p class="mt-1 text-white font-mono">Personal Number: 01700000000</p>
+            </div>
+
+            <div class="space-y-3">
+                <div>
+                    <label class="text-xs text-zinc-400 block mb-1">আপনার বিকাশ/নগদ নাম্বার</label>
+                    <input type="text" placeholder="01XXXXXXXXX" class="w-full bg-zinc-900 border border-zinc-800 px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:border-red-500">
+                </div>
+                <div>
+                    <label class="text-xs text-zinc-400 block mb-1">ট্রানজেকশন আইডি (TrxID)</label>
+                    <input type="text" placeholder="8X73HD82" class="w-full bg-zinc-900 border border-zinc-800 px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:border-red-500">
+                </div>
+                <button class="w-full bg-green-600 hover:bg-green-700 py-3 rounded-xl font-bold text-sm mt-2 transition">পেমেন্ট নিশ্চিত করুন</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- পপআপ মডাল স্ক্রিপ্ট -->
+    <script>
+        function openPaymentModal(name, price) {
+            document.getElementById('modalPackageInfo').innerText = `প্যাকেজ: ${name} (৳ ${price})`;
+            document.getElementById('paymentModal').classList.remove('hidden');
+            document.getElementById('paymentModal').classList.add('flex');
+        }
+        function closePaymentModal() {
+            document.getElementById('paymentModal').classList.remove('flex');
+            document.getElementById('paymentModal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
