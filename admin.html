@@ -9,95 +9,178 @@
 </head>
 <body class="bg-zinc-950 text-white font-sans flex min-h-screen">
 
-    <!-- অ্যাডমিন সাইডবার -->
-    <aside class="w-64 bg-zinc-900 border-r border-zinc-800 p-6 flex flex-col justify-between hidden md:flex">
-        <div class="space-y-6">
-            <div class="text-xl font-black text-red-500 flex items-center gap-2 uppercase tracking-wider">
-                <i class="fa-solid fa-unlock-keyhole"></i> Admin Panel
-            </div>
-            <nav class="space-y-1">
-                <a href="#" class="flex items-center gap-3 px-4 py-3 bg-zinc-800 border-l-4 border-red-500 font-semibold text-sm transition text-white"><i class="fa-solid fa-gauge"></i> ড্যাশবোর্ড</a>
-                <a href="#" class="flex items-center gap-3 px-4 py-3 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-xl text-sm transition"><i class="fa-solid fa-users-cog"></i> ইউজার কন্ট্রোল</a>
-                <a href="#" class="flex items-center gap-3 px-4 py-3 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-xl text-sm transition"><i class="fa-solid fa-cubes"></i> প্যাকেজ সেটিংস</a>
-                <a href="#" class="flex items-center gap-3 px-4 py-3 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-xl text-sm transition"><i class="fa-solid fa-rectangle-ad"></i> বিজ্ঞাপন সেটআপ</a>
-            </nav>
-        </div>
+    <aside class="w-64 bg-zinc-900 border-r border-zinc-800 p-6 hidden md:block">
+        <h2 class="text-xl font-black text-red-500 mb-6"><i class="fa-solid fa-unlock-keyhole"></i> ADMIN PANEL</h2>
+        <nav class="space-y-2">
+            <a href="#" class="block p-3 bg-red-600 rounded-xl text-sm font-semibold">কন্ট্রোল ড্যাশবোর্ড</a>
+            <a href="index.html" class="block p-3 hover:bg-zinc-800 rounded-xl text-sm text-zinc-400">মূল ওয়েবসাইট</a>
+            <button onclick="localStorage.removeItem('currentUser'); window.location.href='user.html'" class="w-full text-left p-3 text-red-400 text-sm">লগআউট</button>
+        </nav>
     </aside>
 
-    <!-- মেইন অ্যাডমিন কন্টেন্ট -->
     <main class="flex-1 p-6 md:p-10">
-        <header class="mb-8 flex justify-between items-center">
+        <header class="mb-6 flex justify-between items-center">
             <div>
-                <h1 class="text-2xl font-black">সেন্ট্রাল অ্যাডমিন কন্ট্রোল</h1>
-                <p class="text-sm text-zinc-400">এখান থেকে পুরো প্ল্যাটফর্মের লাইভ ডাটা ম্যানেজ করুন।</p>
+                <h1 class="text-2xl font-bold">সেন্ট্রাল অ্যাডমিন কন্ট্রোল</h1>
+                <p class="text-sm text-zinc-400">মাস্টার লগইন: <span class="text-white">admin@tv.com (pass: admin123)</span></p>
             </div>
-            <span class="bg-red-950 text-red-400 border border-red-800 px-4 py-1 rounded-full text-xs font-bold uppercase">Super Admin</span>
         </header>
 
-        <!-- বিজ্ঞাপন অটো সেটিং (Monetag / Adsterra Ads Setup) -->
-        <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl mb-8">
-            <h3 class="text-base font-bold mb-4 flex items-center gap-2"><i class="fa-solid fa-rectangle-ad text-yellow-500"></i> অটো বিজ্ঞাপন সেটিং (Monetag & Adsterra Script Placement)</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- ১. m3u8 ফাইল/লিঙ্ক যোগ করার এডভান্সড অপশন (ক্যাটাগরি ভিত্তিক) -->
+        <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800 mb-8">
+            <h3 class="font-bold text-base text-red-500 mb-4"><i class="fa-solid fa-plus-circle mr-1"></i> নতুন লাইভ টিভি/M3U8 লিঙ্ক যোগ করুন (ক্যাটাগরি ভিত্তিক)</h3>
+            <form onsubmit="addLiveChannel(event)" class="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div>
-                    <label class="text-xs text-zinc-400 block mb-1">Adsterra ব্যানার কোড (HTML/JS)</label>
-                    <textarea rows="4" placeholder="<!-- Paste Adsterra Script Here -->" class="w-full bg-zinc-800 border border-zinc-700 p-3 rounded-xl text-xs font-mono text-zinc-300 focus:outline-none focus:border-red-500"></textarea>
+                    <label class="text-xs text-zinc-400 block mb-1">চ্যানেলের নাম</label>
+                    <input type="text" id="chanName" required placeholder="Sony Ten HD" class="w-full bg-zinc-800 border border-zinc-700 px-3 py-2 rounded-xl text-sm focus:outline-none">
+                </div>
+                <div class="md:col-span-2">
+                    <label class="text-xs text-zinc-400 block mb-1">M3U8 স্ট্রিম লিঙ্ক (URL)</label>
+                    <input type="url" id="chanUrl" required placeholder="https://example.com/live.m3u8" class="w-full bg-zinc-800 border border-zinc-700 px-3 py-2 rounded-xl text-sm focus:outline-none">
                 </div>
                 <div>
-                    <label class="text-xs text-zinc-400 block mb-1">Monetag পপ-আন্ডার বা ডিরেক্ট লিংক কোড</label>
-                    <textarea rows="4" placeholder="<!-- Paste Monetag Script Here -->" class="w-full bg-zinc-800 border border-zinc-700 p-3 rounded-xl text-xs font-mono text-zinc-300 focus:outline-none focus:border-red-500"></textarea>
+                    <label class="text-xs text-zinc-400 block mb-1">ক্যাটাগরি সিলেক্ট করুন</label>
+                    <select id="chanCategory" class="w-full bg-zinc-800 border border-zinc-700 px-3 py-2 rounded-xl text-sm focus:outline-none">
+                        <option value="sports">Sports (খেলাধুলা)</option>
+                        <option value="tv show">TV Show (টিভি শো)</option>
+                        <option value="movies">Movies (মুভি)</option>
+                    </select>
                 </div>
-            </div>
-            <button class="mt-4 bg-green-600 hover:bg-green-700 px-6 py-2 rounded-xl text-sm font-bold transition">বিজ্ঞাপন কোড সেভ করুন</button>
+                <div class="md:col-span-4 text-right">
+                    <button class="bg-green-600 hover:bg-green-700 px-6 py-2 rounded-xl text-sm font-bold transition">চ্যানেল লাইভ করুন</button>
+                </div>
+            </form>
         </div>
 
-        <!-- ইউজার পেজ ফুল কন্ট্রোল ও লিস্ট -->
-        <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl">
-            <h3 class="text-base font-bold mb-4 flex items-center gap-2"><i class="fa-solid fa-users-cog text-blue-500"></i> ইউজার পেজ ফুল কন্ট্রোল</h3>
-            <div class="overflow-x-auto">
-                <table class="w-full text-left text-sm text-zinc-400">
-                    <thead class="bg-zinc-800 text-zinc-200 text-xs uppercase">
-                        <tr>
-                            <th class="p-3">ইউজার</th>
-                            <th class="p-3">রোল (Role)</th>
-                            <th class="p-3">স্ট্যাটাস</th>
-                            <th class="p-3 text-right">অ্যাকশন (Action)</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-zinc-800">
-                        <tr>
-                            <td class="p-3 flex items-center gap-3">
-                                <div class="w-8 h-8 bg-zinc-700 rounded-full flex items-center justify-center text-xs">RH</div>
-                                <div>
-                                    <p class="font-medium text-white text-sm">রাকিব হাসান</p>
-                                    <p class="text-xs text-zinc-500">rakib@example.com</p>
-                                </div>
-                            </td>
-                            <td class="p-3 text-xs">General User</td>
-                            <td class="p-3"><span class="bg-green-950 text-green-400 border border-green-900 text-[10px] px-2 py-0.5 rounded-full font-bold">Active</span></td>
-                            <td class="p-3 text-right space-x-1">
-                                <button class="bg-blue-600 hover:bg-blue-700 text-white text-xs px-2.5 py-1 rounded transition"><i class="fa-solid fa-pen-to-square"></i> এডিট</button>
-                                <button class="bg-red-600 hover:bg-red-700 text-white text-xs px-2.5 py-1 rounded transition"><i class="fa-solid fa-ban"></i> ব্লক</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="p-3 flex items-center gap-3">
-                                <div class="w-8 h-8 bg-zinc-700 rounded-full flex items-center justify-center text-xs">SR</div>
-                                <div>
-                                    <p class="font-medium text-white text-sm">সোহেল রানা</p>
-                                    <p class="text-xs text-zinc-500">sohel@reseller.com</p>
-                                </div>
-                            </td>
-                            <td class="p-3 text-xs text-orange-400 font-bold">Reseller</td>
-                            <td class="p-3"><span class="bg-green-950 text-green-400 border border-green-900 text-[10px] px-2 py-0.5 rounded-full font-bold">Active</span></td>
-                            <td class="p-3 text-right space-x-1">
-                                <button class="bg-blue-600 hover:bg-blue-700 text-white text-xs px-2.5 py-1 rounded transition"><i class="fa-solid fa-pen-to-square"></i> এডিট</button>
-                                <button class="bg-red-600 hover:bg-red-700 text-white text-xs px-2.5 py-1 rounded transition"><i class="fa-solid fa-ban"></i> ব্লক</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- ২. রিসেলার আইডি তৈরি ফরম -->
+            <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800">
+                <h3 class="font-bold text-orange-500 text-sm mb-4"><i class="fa-solid fa-user-tie mr-1"></i> নতুন রিসেলার আইডি তৈরি করুন</h3>
+                <form onsubmit="adminCreateReseller(event)" class="space-y-3">
+                    <div>
+                        <label class="text-xs text-zinc-400 block mb-1">রিসেলারের নাম</label>
+                        <input type="text" id="resName" required class="w-full bg-zinc-800 border border-zinc-700 px-3 py-2 rounded-xl text-sm focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="text-xs text-zinc-400 block mb-1">ইমেইল</label>
+                        <input type="email" id="resEmail" required class="w-full bg-zinc-800 border border-zinc-700 px-3 py-2 rounded-xl text-sm focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="text-xs text-zinc-400 block mb-1">পাসওয়ার্ড</label>
+                        <input type="password" id="resPass" required class="w-full bg-zinc-800 border border-zinc-700 px-3 py-2 rounded-xl text-sm focus:outline-none">
+                    </div>
+                    <button class="w-full bg-orange-600 hover:bg-orange-700 py-2 rounded-xl font-bold text-sm">রিসেলার তৈরি নিশ্চিত করুন</button>
+                </form>
+            </div>
+
+            <!-- ৩. অল ইউজার ও রিসেলার কন্ট্রোল লিস্ট টেবিল -->
+            <div class="lg:col-span-2 bg-zinc-900 p-6 rounded-2xl border border-zinc-800">
+                <h3 class="font-bold text-sm mb-4"><i class="fa-solid fa-users-gear mr-1"></i> সামগ্রিক ইউজার ও রিসেলার কন্ট্রোল</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm text-zinc-400">
+                        <thead class="bg-zinc-800 text-zinc-200 text-xs">
+                            <tr>
+                                <th class="p-3">ইউজার নাম</th>
+                                <th class="p-3">ইমেইল</th>
+                                <th class="p-3">রোল (Role)</th>
+                                <th class="p-3 text-right">অ্যাকশন</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminUserTable" class="divide-y divide-zinc-800">
+                            <!-- JS ডাটা লোড হবে -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </main>
+
+    <script>
+        // সিকিউরিটি চেক
+        let currentAdmin = JSON.parse(localStorage.getItem('currentUser'));
+        if(!currentAdmin || currentAdmin.role !== 'admin') {
+            window.location.href = 'user.html';
+        }
+
+        // এপিআই/লোকালস্টোরেজে চ্যানেল অ্যাড করার মেথড
+        function addLiveChannel(e) {
+            e.preventDefault();
+            let channels = JSON.parse(localStorage.getItem('channels')) || [];
+            
+            const newChannel = {
+                id: Date.now(),
+                name: document.getElementById('chanName').value,
+                url: document.getElementById('chanUrl').value,
+                category: document.getElementById('chanCategory').value
+            };
+
+            channels.push(newChannel);
+            localStorage.setItem('channels', JSON.stringify(channels));
+            alert('নতুন চ্যানেল সফলভাবে যুক্ত হয়েছে এবং ইণ্ডেক্স পেজে লাইভ হয়েছে!');
+            
+            document.getElementById('chanName').value = '';
+            document.getElementById('chanUrl').value = '';
+        }
+
+        // রিসেলার একাউন্ট তৈরি
+        function adminCreateReseller(e) {
+            e.preventDefault();
+            let allUsers = JSON.parse(localStorage.getItem('allUsers')) || [];
+            
+            let email = document.getElementById('resEmail').value;
+            if(allUsers.some(u => u.email === email)) {
+                alert('এই ইমেইল অ্যাকাউন্টটি অলরেডি আছে!');
+                return;
+            }
+
+            let newReseller = {
+                name: document.getElementById('resName').value,
+                email: email,
+                password: document.getElementById('resPass').value,
+                role: 'reseller',
+                createdBy: 'admin'
+            };
+
+            allUsers.push(newReseller);
+            localStorage.setItem('allUsers', JSON.stringify(allUsers));
+            alert('নতুন রিসেলার একাউন্ট তৈরি সম্পন্ন!');
+            
+            document.getElementById('resName').value = '';
+            document.getElementById('resEmail').value = '';
+            document.getElementById('resPass').value = '';
+            loadAllUsers();
+        }
+
+        // ইউজার তালিকা লোড
+        function loadAllUsers() {
+            let allUsers = JSON.parse(localStorage.getItem('allUsers')) || [];
+            const table = document.getElementById('adminUserTable');
+            table.innerHTML = '';
+
+            allUsers.forEach((u, index) => {
+                table.innerHTML += `
+                    <tr>
+                        <td class="p-3 text-white font-semibold">${u.name}</td>
+                        <td class="p-3">${u.email}</td>
+                        <td class="p-3"><span class="px-2 py-0.5 rounded text-xs ${u.role === 'reseller' ? 'bg-orange-950 text-orange-400 font-bold' : 'bg-zinc-800 text-zinc-300'}">${u.role.toUpperCase()}</span></td>
+                        <td class="p-3 text-right">
+                            <button onclick="deleteUser(${index})" class="bg-red-600/20 hover:bg-red-600 text-red-400 hover:text-white text-xs px-2 py-1 rounded transition"><i class="fa-solid fa-trash"></i> ডিলিট</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        function deleteUser(index) {
+            let allUsers = JSON.parse(localStorage.getItem('allUsers')) || [];
+            if(confirm('আপনি কি নিশ্চিতভাবে এই অ্যাকাউন্টটি মুছে ফেলতে চান?')) {
+                allUsers.splice(index, 1);
+                localStorage.setItem('allUsers', JSON.stringify(allUsers));
+                loadAllUsers();
+            }
+        }
+
+        loadAllUsers();
+    </script>
 </body>
 </html>
