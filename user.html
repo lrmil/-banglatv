@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ইউজার ড্যাশবোর্ড</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-zinc-950 text-white font-sans flex min-h-screen">
+
+    <!-- সাইডবার মেনু -->
+    <aside class="w-64 bg-zinc-900 border-r border-zinc-800 p-6 flex flex-col justify-between hidden md:flex">
+        <div class="space-y-6">
+            <a href="index.html" class="text-xl font-bold text-red-500 flex items-center gap-2">
+                <i class="fa-solid fa-tv"></i> বাংলাটিভি
+            </a>
+            <nav class="space-y-1">
+                <a href="#" class="flex items-center gap-3 px-4 py-3 bg-red-600 rounded-xl font-medium text-sm transition"><i class="fa-solid fa-chart-pie"></i> ড্যাশবোর্ড</a>
+                <a href="index.html" class="flex items-center gap-3 px-4 py-3 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-xl font-medium text-sm transition"><i class="fa-solid fa-play"></i> লাইভ স্ট্রিম</a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-xl font-medium text-sm transition"><i class="fa-solid fa-credit-card"></i> বিলিং হিস্ট্রি</a>
+            </nav>
+        </div>
+        <div class="border-t border-zinc-800 pt-4">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 bg-zinc-800 rounded-full flex items-center justify-center"><i class="fa-solid fa-user text-zinc-400"></i></div>
+                <div>
+                    <h4 class="text-sm font-semibold">রাকিব হাসান</h4>
+                    <p class="text-xs text-zinc-500">গ্রাহক অ্যাকাউন্ট</p>
+                </div>
+            </div>
+            <a href="index.html" class="w-full bg-zinc-800 hover:bg-zinc-700 py-2 rounded-lg text-xs font-semibold block text-center transition text-red-400">লগ আউট</a>
+        </div>
+    </aside>
+
+    <!-- মেইন ড্যাশবোর্ড কন্টেন্ট -->
+    <main class="flex-1 p-6 md:p-10">
+        <!-- হেডার -->
+        <header class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-2xl font-bold">স্বাগতম, রাকিব!</h1>
+                <p class="text-sm text-zinc-400">আপনার সাবস্ক্রিপশন ও প্রোফাইল এখান থেকে নিয়ন্ত্রণ করুন।</p>
+            </div>
+        </header>
+
+        <!-- ওভারভিউ কার্ডসমূহ -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl">
+                <p class="text-sm text-zinc-400 mb-1">অ্যাক্টিভ প্যাকেজ</p>
+                <h3 class="text-xl font-bold text-green-500">মেগা স্পোর্টস প্যাক</h3>
+            </div>
+            <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl">
+                <p class="text-sm text-zinc-400 mb-1">মেয়াদ শেষ হবে</p>
+                <h3 class="text-xl font-bold">১৪ জুলাই, ২০২৬</h3>
+            </div>
+            <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl">
+                <p class="text-sm text-zinc-400 mb-1">কানেক্টেড ডিভাইস</p>
+                <h3 class="text-xl font-bold text-orange-500">১ টি (সর্বোচ্চ ২)</h3>
+            </div>
+        </div>
+
+        <!-- প্রোফাইল সেটিংস (ইউজার ফুল কন্ট্রোল) -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="lg:col-span-2 bg-zinc-900 border border-zinc-800 p-6 rounded-2xl">
+                <h3 class="text-lg font-bold mb-4 border-b border-zinc-800 pb-2"><i class="fa-solid fa-user-gear mr-2 text-red-500"></i> প্রোফাইল এডিট করুন</h3>
+                <form class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="text-xs text-zinc-400 block mb-1">আপনার নাম</label>
+                            <input type="text" value="রাকিব হাসান" class="w-full bg-zinc-800 border border-zinc-700 px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:border-red-500">
+                        </div>
+                        <div>
+                            <label class="text-xs text-zinc-400 block mb-1">ইমেইল এড্রেস</label>
+                            <input type="email" value="rakib@example.com" class="w-full bg-zinc-800 border border-zinc-700 px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:border-red-500" disabled>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-xs text-zinc-400 block mb-1">নতুন পাসওয়ার্ড (পরিবর্তন করতে চাইলে)</label>
+                        <input type="password" placeholder="••••••••" class="w-full bg-zinc-800 border border-zinc-700 px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:border-red-500">
+                    </div>
+                    <button type="submit" class="bg-red-600 hover:bg-red-700 px-6 py-2.5 rounded-xl font-semibold text-sm transition">সেভ চেঞ্জেস</button>
+                </form>
+            </div>
+
+            <!-- রিসেলার নোটিশ/অফার বক্স -->
+            <div class="bg-gradient-to-br from-zinc-900 to-zinc-950 border border-zinc-800 p-6 rounded-2xl flex flex-col justify-between">
+                <div>
+                    <h3 class="text-lg font-bold mb-2 text-orange-500"><i class="fa-solid fa-briefcase mr-2"></i> টাকা আয় করতে চান?</h3>
+                    <p class="text-sm text-zinc-400 leading-relaxed">আমাদের রিসেলার প্রোগ্রামে যোগ দিন। নিজে নিজে ইউজার অ্যাকাউন্ট তৈরি করে কাস্টমারের কাছে প্যাকেজ বিক্রি করুন এবং প্রতি বিক্রিতে আকর্ষণীয় কমিশন পান!</p>
+                </div>
+                <a href="reseller.html" class="w-full bg-orange-600 hover:bg-orange-700 py-3 rounded-xl text-center font-bold text-sm block mt-4 transition">রিসেলার প্যানেল দেখুন</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
